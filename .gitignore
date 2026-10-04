@@ -1,0 +1,7 @@
+data/
+logs/
+__pycache__/
+*.pyc
+# keep the result tables (underlying data), ignore models and other large outputs
+results/*
+!results/tables/
