@@ -1,0 +1,3 @@
+base: smoke.yaml
+quantization: {modes: [none, int8], include_baseline: false}
+federated: {algorithms: [fedavg]}

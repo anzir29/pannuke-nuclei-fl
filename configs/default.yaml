@@ -1,0 +1,71 @@
+# Reimplementation of Chowdhury et al., PLoS One 20(7): e0322749 (2025).
+# The same training recipe is applied to every architecture within a comparison.
+
+data:
+  root: data/pannuke            # folder containing the Kaggle PanNuke fold folders
+  cache: data/cache             # preprocessed arrays are written here
+  test_fraction: 0.20           # 80/20 split, stratified by tissue
+  val_fraction: 0.10            # held out from the training 80% for early stopping / tuning
+  split_seed: 0                 # split is fixed across all runs
+  crop_size: 64                 # instance crop around each nucleus centroid
+  cls_input_size: 96            # crops resized for the ImageNet backbones
+
+jit_compile: auto               # XLA on GPU; set to false if an XLA compilation error appears
+eval_batch: 8
+tta: true                       # flip test-time augmentation (all models, all precisions)
+
+segmentation:
+  models: [fcn, unet, segnet, resunet]
+  epochs: 100
+  batch_size: 8
+  optimizer: sgd
+  learning_rate: 0.01
+  momentum: 0.9
+  schedule: cosine
+  warmup_epochs: 2
+  weight_decay: null
+  loss: ce_dice
+  dice_weight: 1.0
+  augment: true                 # rot90 / flips / colour jitter
+  early_stopping_patience: 20
+  pretrained_encoder: true      # ImageNet VGG16 encoder for FCN and SegNet
+
+classification:
+  models: [vgg16, vgg19, resnet50, densenet121, inceptionv2]
+  epochs: 40
+  batch_size: 64
+  optimizer: sgd
+  learning_rate: 0.01
+  momentum: 0.9
+  schedule: cosine
+  warmup_epochs: 1
+  weight_decay: null
+  label_smoothing: 0.1
+  class_weight: sqrt_inv        # counters the rare Dead class
+  augment: true
+  early_stopping_patience: 10
+  pretrained: true              # ImageNet initialisation (transfer learning)
+  head: {units: 1024, dense_units: 1024, dropout: 0.2}
+
+tuning:                         # Hyperband over the Table 1 search space
+  max_epochs: 30
+  factor: 3
+  hyperband_iterations: 1
+  seed: 0
+  train_subset: 1.0
+  batch_sizes: [32, 64, 128]
+  include_defaults: True       # true adds the untuned baseline configuration to the search space
+
+quantization:
+  modes: [none, fp16, dynamic, int8]
+  representative_samples: 200
+
+federated:
+  algorithms: [fedavg, fedprox, fedbn]
+  clients: 5
+  client_sweep: [5, 10, 15, 20, 25, 30]
+  rounds: 50
+  local_epochs: 1
+  eval_every: 5
+  partition: iid                # iid | tissue
+  fedprox_mu: 0.01

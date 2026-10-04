@@ -1,0 +1,95 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 340, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 299, in main
+    gpu_setup()
+    ~~~~~~~~~^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/utils.py", line 64, in gpu_setup
+    import tensorflow as tf
+ModuleNotFoundError: No module named 'tensorflow'
+2026-10-02 23:10:28.430662: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-02 23:10:28.445577: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-02 23:10:28.450026: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 342, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 330, in main
+    r = fns[st](cfg=cfg, data_getter=data_getter, out=out, root=root, seed=a.seed, models=a.models,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 48, in stage_prep
+    data = data_getter()
+           ^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 313, in data_getter
+    cache["d"] = load_split(cfg)
+                 ^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/data.py", line 76, in load_split
+    path = preprocess(d["root"], d["cache"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/data.py", line 56, in preprocess
+    for img_f, msk_f, typ_f in _find_fold_files(root):
+                               ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/data.py", line 20, in _find_fold_files
+    raise FileNotFoundError(f"No images.npy under {root}")
+FileNotFoundError: No images.npy under data/pannuke
+2026-10-02 23:39:49.168585: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-02 23:39:49.183155: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-02 23:39:49.187698: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2026-10-02 23:40:15.118374: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-02 23:40:15.133240: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-02 23:40:15.137583: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 342, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 330, in main
+    r = fns[st](cfg=cfg, data_getter=data_getter, out=out, root=root, seed=a.seed, models=a.models,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 48, in stage_prep
+    data = data_getter()
+           ^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 313, in data_getter
+    cache["d"] = load_split(cfg)
+                 ^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/data.py", line 76, in load_split
+    path = preprocess(d["root"], d["cache"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/data.py", line 69, in preprocess
+    tmp.rename(out)
+  File "/home/fengyan/anaconda3/envs/pannuke-fl/lib/python3.11/pathlib.py", line 1175, in rename
+    os.rename(self, target)
+FileNotFoundError: [Errno 2] No such file or directory: 'data/cache/pannuke.tmp.npz' -> 'data/cache/pannuke.npz'
+[prep] train: 5688 images, 137523 nuclei, class counts [55674 24059 36479  2394 18917]
+[prep] val: 632 images, 15305 nuclei, class counts [6450 2306 4060  201 2288]
+[prep] test: 1581 images, 36916 nuclei, class counts [15279  5911 10046   313  5367]
+[prep] done -> results/seed0/prep.done.json
+2026-10-02 23:45:32.721128: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-02 23:45:32.736168: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-02 23:45:32.740769: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+[prep] already done (results/seed0/prep.done.json)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 344, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/run.py", line 301, in main
+    from . import train as _train
+  File "/home/fengyan/Anjir/pannuke-nuclei-fl/pannuke_fl/train.py", line 7, in <module>
+    import keras
+ModuleNotFoundError: No module named 'keras'
+2026-10-03 10:14:32.734459: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-03 10:14:32.809112: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-03 10:14:32.830266: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+[prep] already done (results/seed0/prep.done.json)
+2026-10-03 10:45:12.090811: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-03 10:45:12.106178: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-03 10:45:12.110758: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+[prep] already done (results/seed0/prep.done.json)

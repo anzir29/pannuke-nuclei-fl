@@ -1,0 +1,18 @@
+# Tiny settings so the whole pipeline runs on a CPU in minutes. Not for results.
+data: {root: /tmp/pfl_smoke/raw, cache: /tmp/pfl_smoke/cache, test_fraction: 0.2, val_fraction: 0.15,
+       split_seed: 0, crop_size: 64, cls_input_size: 64}
+eval_batch: 1
+tta: true
+segmentation: {models: [segnet], epochs: 1, batch_size: 2, optimizer: sgd, learning_rate: 0.01,
+               momentum: 0.9, schedule: cosine, warmup_epochs: 0, loss: ce_dice, augment: true,
+               early_stopping_patience: 2, pretrained_encoder: false}
+classification: {models: [densenet121], epochs: 1, batch_size: 32, optimizer: sgd, learning_rate: 0.01,
+                 momentum: 0.9, schedule: cosine, warmup_epochs: 0, label_smoothing: 0.1,
+                 class_weight: sqrt_inv, augment: true, early_stopping_patience: 2, pretrained: false,
+                 head: {units: 64, dense_units: 64, dropout: 0.2}}
+tuning: {max_epochs: 2, factor: 3, hyperband_iterations: 1, seed: 0, train_subset: 0.3,
+         batch_sizes: [2], restrict_space_for_testing: true}
+quantization: {modes: [none, fp16, dynamic, int8], representative_samples: 4}
+federated: {algorithms: [fedavg, fedprox, fedbn], clients: 2, client_sweep: [2, 3], rounds: 2,
+            local_epochs: 1, eval_every: 1, partition: iid, fedprox_mu: 0.01}
+cls_eval_batch: 16

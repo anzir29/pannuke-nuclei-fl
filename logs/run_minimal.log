@@ -1,0 +1,17 @@
+nohup: ignoring input
+2026-10-03 10:45:12.090811: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:485] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+2026-10-03 10:45:12.106178: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:8454] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+2026-10-03 10:45:12.110758: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1452] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+[prep] already done (results/seed0/prep.done.json)
+running: GPU0 (SegNet) pid 3168945, GPU1 (DenseNet121) pid 3168946
+progress: tail -f logs/gpu0_segnet.log logs/gpu1_densenet121.log
+wrote results/tables/table2_segmentation.csv
+wrote results/tables/table3_cpa_iou.csv
+wrote results/tables/table6_classification.csv
+wrote results/tables/fig4_classwise.csv
+wrote results/tables/table7_federated_int8.csv
+wrote results/tables/fig5_hyperband_seg_trials.csv
+wrote results/tables/fig5_hyperband_cls_trials.csv
+wrote results/tables/fig6_quantization_size_accuracy.csv
+(skipped fig7_clients.csv: no results yet)
+done -> results/tables/summary.md

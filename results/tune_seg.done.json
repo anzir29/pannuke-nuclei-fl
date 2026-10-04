@@ -1,0 +1,16 @@
+{
+  "seg": {
+    "filters": 64,
+    "filter_len": 3,
+    "filter_wid": 3,
+    "init": "normal",
+    "activation": "relu",
+    "fc_neurons": 64,
+    "dropout": 0.15,
+    "batch_size": 64,
+    "tuner/epochs": 30,
+    "tuner/initial_epoch": 0,
+    "tuner/bracket": 0,
+    "tuner/round": 0
+  }
+}

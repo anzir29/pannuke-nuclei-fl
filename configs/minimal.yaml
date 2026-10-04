@@ -1,0 +1,19 @@
+# Main results only, one seed: SegNet + DenseNet121, Hyperband, INT8 quantization, FedAvg.
+# Everything not listed here is taken from default.yaml.
+base: default.yaml
+
+segmentation:
+  models: [segnet]
+
+classification:
+  models: [densenet121]
+
+tuning:
+  train_subset: 0.5             # search on half the training images; the winner is retrained on all of them
+
+quantization:
+  modes: [none, int8]
+  include_baseline: false
+
+federated:
+  algorithms: [fedavg]
