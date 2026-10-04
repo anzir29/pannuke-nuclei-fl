@@ -1,0 +1,18 @@
+{
+  "title": "Re-created code for: Nuclei segmentation and classification from histopathology images using federated learning for end-edge platform",
+  "upload_type": "software",
+  "description": "Re-created code for the PLoS One article e0322749 (2025): nuclei segmentation (SegNet) and classification (DenseNet121) on PanNuke with Hyperband tuning, TensorFlow Lite quantization and federated learning. Includes the result tables underlying the reproduced results.",
+  "creators": [
+    {"name": "Chowdhury, Anjir Ahmed", "affiliation": "University of Houston"},
+    {"name": "Hasan Mahmud, S M", "affiliation": "Daffodil International University"},
+    {"name": "Palash Uddin, Md", "affiliation": "Hajee Mohammad Danesh Science and Technology University"},
+    {"name": "Kadry, Seifedine", "affiliation": "Lebanese American University"},
+    {"name": "Kim, Jung-Yeon", "affiliation": "Soonchunhyang University"},
+    {"name": "Nam, Yunyoung", "affiliation": "Soonchunhyang University"}
+  ],
+  "license": "MIT",
+  "keywords": ["histopathology", "nuclei segmentation", "federated learning", "PanNuke", "quantization"],
+  "related_identifiers": [
+    {"identifier": "10.1371/journal.pone.0322749", "relation": "isSupplementTo", "scheme": "doi"}
+  ]
+}
